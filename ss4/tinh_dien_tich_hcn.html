@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tinh dien tich HCN</title>
+</head>
+<body>
+<h1>Tính S hình chữ nhật</h1>
+<label for="chieDai">Chiều dài: </label>
+<input type="number" id="chieDai"><br>
+<label for="chieuRong">Chiều rộng: </label>
+<input type="number" id="chieuRong"><br>
+<button onclick="tinhDienTich()">Tinh S</button>
+<p id="ket-qua"></p>
+<script>
+    //camelCase
+    function tinhDienTich() {
+        let chieuDai = parseFloat(document.getElementById("chieDai").value);
+        let chieuRong = parseFloat(document.getElementById("chieuRong").value);
+        let dienTich = chieuDai * chieuRong;
+        document.write("Diện  tcích HCN:" + dienTich + "<br>");
+    }
+</script>
+</body>
+</html>
