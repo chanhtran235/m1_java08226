@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input placeholder="Nhập từ cân tra" id="word">
+<button onclick="translateToVietnames()">Dịch</button>
+<p id="result"></p>
+<script>
+
+    let englishes = ["hello","you","i","good"];
+    let vietnames = ["xin chào","bạn","tôi","tốt"];
+    function translateToVietnames(){
+        let word = document.getElementById("word").value;
+        word = word.toLowerCase();// hàm của string => đưa toàn bộ về in thường
+
+        // let index = -1;
+        // for (let i = 0; i <englishes.length ; i++) {
+        //     if (word==englishes[i]){
+        //         index = i;
+        //         break;
+        //     }
+        // }
+        // if (index ==-1){
+        //     document.getElementById("result").innerText = " không tìm thấy "
+        // }else {
+        //     document.getElementById("result").innerText = vietnames[index];
+        // }
+
+        // hàm có sẵn
+        let index = englishes.indexOf(word);
+        if (index ==-1){
+            document.getElementById("result").innerText = " không tìm thấy "
+        }else {
+            document.getElementById("result").innerText = vietnames[index];
+        }
+        // tự viết
+    }
+</script>
+</body>
+</html>

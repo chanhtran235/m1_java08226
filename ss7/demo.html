@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+<p id="display"></p>
+
+<script>
+    // let tableString = '<table border="1">';
+    // // cac hàng
+    // for (let i = 1; i <=10 ; i++) {
+    //     tableString +='<tr>'
+    //     for (let j = 2; j <=9 ; j++) {
+    //         tableString +='<td>'+j+'x'+i+'='+(j*i)+'</td>'
+    //     }
+    //     tableString += '</tr>'
+    // }
+    // tableString +='</table>'
+
+    // template literal : cú pháp của ES6 => Version cua js (2015)
+
+    let tableString = `<table border="1">`;
+    // cac hàng
+    for (let i = 1; i <=10 ; i++) {
+        tableString +=`<tr>`
+        for (let j = 2; j <=9 ; j++) {
+            // tableString +='<td>'+j+'x'+i+'='+(j*i)+'</td>'
+            // tableString +=`<td>${j} x ${i} = ${j*i}</td>`;
+            tableString +=`<td>${i} x ${j}=${i*j}</td>`;
+        }
+        tableString += `</tr>`
+    }
+    tableString +=`</table>`
+
+    document.getElementById("display").innerHTML = tableString;
+</script>
+</body>
+</html>

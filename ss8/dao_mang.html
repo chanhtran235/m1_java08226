@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // B1: tạo mảng
+    // + nhập độ dài
+    // + nhâp phần tử cho mảng
+    let n = + prompt("Nhap do dai cua mang");
+    while (n<=0||n>20){
+        n = + prompt("Nhap do dai cua mang");
+    }
+    // B2 : nhap pt cho mang
+    let array = new Array(n);
+    for (let i = 0; i <array.length ; i++) {
+        // array[i] = +prompt(`nhập phần tử thứ ${i}`)
+        array[i] = +prompt("nhập phần tử thứ " + i);
+    }
+    alert(array);
+    // đảo mảng:
+    // sử dụng thuật toán\
+    // tham chieu : khi goi hàm truyen dl vào cho ham nếu có kdl tham chiếu thì gọi làm tham chiếu
+     // nếu kiểu nguyen thuỷ => tham trị
+
+
+    function myReverseArray(arr){
+        for (let i = 0; i <arr.length/2; i++) {
+            let temp = arr[i] ;
+            arr[i] = arr[arr.length-1-i];
+            arr[arr.length-1-i] = temp;
+        }
+    }
+    // Chai nươc A , chai rượu B: => làm sao có the hoan đỏi : A(rượu) B(nươc).
+    // lấy C:
+    // A => C:
+    // B=> A;
+    // C=>B;
+
+   myReverseArray(array);
+
+    // for (let i = 0; i <array.length/2; i++) {
+    //     let temp = array[i] ;
+    //     array[i] = array[array.length-1-i];
+    //     array[array.length-1-i] = temp;
+    // }
+
+
+    // + sử dụng hàm có sắn
+    //array : đối tuowng => method() : hành động
+
+    alert(array);
+</script>
+</body>
+</html>
