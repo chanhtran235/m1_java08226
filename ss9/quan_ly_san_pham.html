@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Quản lý sản phẩm</h1>
+<h2>Thêm mới</h2>
+<input id="productName" placeholder=" Nhập tên sản phẩm">
+<button onclick="addNewProduct()">Thêm mới</button><br>
+<small id="messageError" style="color: red"></small><br>
+<input id="searchName" placeholder=" Nhập tên sản phẩm cần tìm">
+<button onclick="searchByName()"> Tìm kiêm </button><br>
+<p id="result"></p>
+<script>
+
+    // CRUD: thêm, xem, sửa , xoá:
+    // C: Create
+    // R : read
+    // U : Update
+    // D : Delete
+    let productList = [
+        "Iphone",
+        "Sam sung",
+        "Nokia",
+        "Bphone"
+    ];
+
+
+    display(productList);
+    // viêt hàm để hiển thi danh sách : READ
+    function display(list){
+      let tableString = `<table border="1" style="border-collapse: collapse">
+                        <tr>
+                            <th>STT</th>
+                            <th> Tên sản phẩm </th>
+                            <th>Sửa</th>
+                            <th>Xoá</th>
+                        </tr>`;
+
+        for (let i = 0; i <list.length ; i++) {
+            tableString +=` <tr>
+                            <td>${i+1}</td>
+                            <td>${list[i]}</td>
+                            <td><button onclick="updateByIndex(${i})">Sửa</button></td>
+                            <td><button onclick="deleteByIndex(${i})">Xoá</button></td>
+                        </tr>`;
+        }
+        tableString +=`</table>`
+
+        document.getElementById("result").innerHTML= tableString;
+    }
+
+    // Create:  hàm thêm mới
+    function addNewProduct(){
+        let newProduct = document.getElementById("productName").value;
+        if (productList.includes(newProduct)){
+            document.getElementById("messageError").innerText = "Tên sản phẩm đã tồn tại trong  danh sách"
+        }else if (newProduct!=""){
+            productList.push(newProduct);
+            document.getElementById("productName").value="";
+            document.getElementById("messageError").innerText ="";
+        }else {
+           document.getElementById("messageError").innerText = "Tên sản phẩm không được để trống"
+        }
+        display(productList);
+    }
+
+    // Delete : xoá
+    function deleteByIndex(index){
+       let conf = confirm(`Bạn có muốn xoá ${productList[index]}`);
+       if (conf) {
+           productList.splice(index,1);
+           display(productList);
+       }
+    }
+    // Update:
+    function updateByIndex(index){
+       let newProduct = prompt("Nhập tên mơi",productList[index]);
+       productList[index]= newProduct;
+       display(productList);
+    }
+
+    function searchByName(){
+        let searchName = document.getElementById("searchName").value;
+        // let searchList = productList.filter(p =>p.includes(searchName)); // cú pháp mơi của ES6.
+        let searchList =[];
+        for (let i = 0; i <productList.length ; i++) {
+            if (productList[i].includes(searchName)){
+                searchList.push(productList[i]);
+            }
+        }
+        display(searchList)
+    }
+</script>
+</body>
+</html>
