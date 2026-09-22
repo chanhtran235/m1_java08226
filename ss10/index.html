@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // mục tiêu OOP ở module 1:
+    // + OOP: Object Oriented Programming ? Là một kỹ thuật lập trình đưa/ánh xạ các đối tượng ngoài thực tế vào trong lập trình
+    // => Các đối tượng có sự tương tác với nhau
+    // ví dụ: thiết một website quản đào tạo ở codegym => ứng dụng lập trình oop như thế nào
+    // đưa các đối tượng:  sinh viên, giảng viên, module, lớp học, điểm số ngoài thực tế vào trong lập trình
+    // các đối tượng có sự tương tác với: GV dạy lớp 1 lớp học, trong lớp học có các sinh viên, mỗi học sinh sẽ có điểm thì từng môn học
+    // hoặc các dối tượng: phòng đào tạo => quản lý giáng viên và sinh viên:
+    //ĐỐI TƯỢNG: (OBJECT) : thông tin của một đối tượng thường có: đặc điểm (tính từ, danh từ) + hành vi /(chức năng)
+    // Ví dụ thực tế : sinh viên A : đặc điểm(tên, ngày sinh, chiều cao, cân nặng) +  hành vi (đi lại, học bài, làm bai....)
+    // phòng đào tạo: đặc điểm:  (danh sách giáo viên, danh sách sinh viên), (quản lý giảng dạy, phân công giảng dạy..)
+    // đặc điểm ( thuộc tính/ biến chứa giá trị) +  hành vi/chức năng (phương thức/method/function)
+    // + phân biệt class và object
+    // tạo object  trực tiếp : object literal
+    let sinhVien1 = {
+        // thuộc tính: properties
+        id: 1,
+        name: "chánh",
+        address: "ĐN",
+        // method
+        study: function (subject) {
+            console.log(`Sinh viên:  ${this.name} đang học môn ${subject}`);
+        }
+    };
+    // có thể taom một form mẫu ( khuôn mẫu) chung cho các đối tượng => tạo ra đối tượng nhanh hơn và đồng nhất;
+    // ví dụ : tạo các bánh in => dùng khuôn => nhanh hơn và đồng nhất
+    // có th:ể tạo khuôn mẫu để tạo ra các đối tượng => lớp (class)
+    // class: là một khuôn mẫu quy định: đặc điểm + hành vi chung cho một nhóm các đối tượng
+    // object: là một thể hiện (instance) cụ  thể của một class => có đặc điểm và hành vi cụ thể
+
+    // trước 2015 sử dụng function để viết ra class
+    // sau 2015  có từ khoá class để tạo class
+    // tên class đặt theo quy tắc PascalCase => phân biệt với biến
+    class SinhVien {
+        // đặc điểm/ thuộc tính
+        id; //
+        name;
+        address;
+        school = "VKU";
+        // có một method đặc biệt (constructor):  dùng để khởi tạo đôi tượng
+        constructor(ma,ten,truongHoc) {
+          this.id = ma;
+          this.name = ten;
+          this.school =truongHoc;
+        }
+        // method
+        study(subject) {
+            console.log(`Sinh viên:  ${this.name} đang học môn ${subject}`);
+        }
+    }
+
+
+    let sinhVien10 = new SinhVien(1,"chánh");
+    let sinhVien11 = new SinhVien(2,"minh","BK");
+    console.log(sinhVien10.id)
+    console.log(sinhVien10.name)
+    console.log(sinhVien10.school)
+    console.log(sinhVien11.id)
+    console.log(sinhVien11.name)
+    console.log(sinhVien11.school)
+
+    // + cách tạo 1 class và 1 object
+
+    // + 4 tính chat lập trình OOP
+    // + Bao đóng : Encapsulation:
+    // + Kế thừa /thừa kế : Inheritance
+    // + Trừu tượng: Abstraction
+    // + Đa hình : polymorphism:
+
+
+</script>
+</body>
+</html>
