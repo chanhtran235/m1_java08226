@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    // khi học một kiến thức nào đó thì nên học theo 5W:
+    // + what: là cái gì:
+    // + why /where/when: tại sao dùng nó/ dùng nó ở đâu? khi nào dùng nó
+    // + how to: cách thức để thực hiện
+
+
+    //  + 4 tính chat lập trình OOP : trong js không thể hiện rõ lắm
+    //  => JS không phải là ngôn ngữ lập trình OOP. JS lập trình POP  sử dụng hàm lâp trình.
+
+    // + Bao đóng/ đóng gói : Encapsulation: không cho phép truy cập trực tiếp vào thuộc tính của đối tượng
+     // => phải truy cập thông qua phương thức trung gian setter và getter
+     // => bảo vệ thông tin của đôi tượng
+
+    // + Kế thừa /thừa kế : Inheritance
+    // là lớp con có thể kết thừa/ sử dụng lại các đặc điểm và hành vi đã có ở lớp cha mà không cần phải khai báo lại
+    // và có thể mở rộng them thuoc tính và hành vi
+
+
+    // + Trừu tượng: Abstraction
+    // không cân quan tâm đến tiến trình triển khai, mà chỉ quan tâm tính năng / kết quả và dữ dũe liê đầu va
+    // ví dụ thực tế : đặt hàng trên shope
+    // cần qua tâm gì: sản phẩm, so luong, phuong thuc thanh toan , dịa chỉ nhạn hàng; => co hanng
+    // khong can quan tam: ai là nguoi dong goi, ai la nguoi van chuyen, hình thuc vạn chuyen..
+    // vị dụ trong code: Math.sqrt(9); = 3
+    // + Đa hình : polymorphism: cùng một đối tuong => có hình thái (vai trò) khác nhau tuy thuộc vào ngữ cảnh (thời điẻm)
+    // ví du: cùng là : Tài : là sinh viên khi ở trên trruowngf, là giám đốc khi ở công ty,
+    // cung một hành vi những sẽ thể hiện khác nhau tuỳ thuộc va ngu canh
+
+    class Animal {
+        #name;
+        #weight;
+        #speed;
+
+        constructor(name, weight,speed) {
+            this.#name = name;
+            this.#weight = weight;
+            this.#speed = speed;
+        }
+
+        // setter: thay đôi giá trị cho thuộc tính
+        // có tham số + không có return
+        setName(name){
+            // không có người bảo  vệ
+            if (name!=""){
+                this.#name = name;
+            }
+        }
+        setWeight(weight){
+            this.#weight = weight;
+        }
+
+        setSpeed(speed){
+            this.#speed = speed;
+        }
+
+
+        // getter: lấy giá trị của thuộc tinnh.
+        getName(){
+            return this.#name;
+        }
+        getWeight(){
+            return this.#weight;
+        }
+        getSpeed(){
+            return this.#speed;
+        }
+        say(text){
+            // không biê kêu  như thế nào
+        }
+
+    }
+
+    // extends : mở rộng ; phải có cái gì đó rồi thì mới có mở rộng
+
+    class Rat extends Animal{
+        #status;
+        constructor(name, weight,speed,status) {
+            super(name, weight,speed);
+            this.#status = status;
+        }
+        getStatus(){
+            return this.#status;
+        }
+        say(text) {
+            console.log(`${this.getName()} : kêu chit chít ${text}`)
+        }
+    }
+
+
+    class Cat extends Animal {
+        constructor(name, weight,speed) {
+            super(name, weight,speed);
+        }
+
+        // overriding: ghi đề phương thức
+        say(text) {
+            console.log(`${this.getName()} : kêu meo meo ${text}`)
+        }
+
+        eatMouse(chuot){
+            if (chuot.getStatus()){
+                this.say("ngon quá");
+                this.setWeight(this.getWeight()+chuot.getWeight())
+            }else {
+                this.say("Chết rồi không ăn")
+            }
+        }
+
+        catchMouse(mouse){
+            if (this.getSpeed()>mouse.getSpeed()){
+                    this.say("Tao bắt được rồi");
+                this.eatMouse(mouse)
+            }else {
+                mouse.say("Đố bắt được tao!")
+            }
+        }
+
+    }
+
+    let jerry1 = new Rat("jerry1",1,5,true);
+    let jerry2 = new Rat("jerry2",1,15,true);
+    let jerry3 = new Rat("jerry3",1,0,false);
+    let tom = new Cat("Tom",10,10);
+    tom.catchMouse(jerry1);
+    tom.catchMouse(jerry2);
+    tom.catchMouse(jerry3);
+    console.log(tom.getWeight());
+
+
+</script>
+</body>
+</html>

@@ -7,7 +7,9 @@
 <body>
 <h1>Quản lý sản phẩm</h1>
 <h2>Thêm mới</h2>
+<input id="productId" placeholder=" Nhập mã sản phẩm">
 <input id="productName" placeholder=" Nhập tên sản phẩm">
+<input id="productPrice" placeholder=" Nhập giá sản phẩm">
 <button onclick="addNewProduct()">Thêm mới</button><br>
 <small id="messageError" style="color: red"></small><br>
 <input id="searchName" placeholder=" Nhập tên sản phẩm cần tìm">
@@ -20,11 +22,19 @@
     // R : read
     // U : Update
     // D : Delete
+    class Product {
+        id;
+        name;
+        price;
+        constructor(id,name,price) {
+            this.id = id;
+            this.name = name;
+            this.price= price;
+        }
+    }
     let productList = [
-        "Iphone",
-        "Sam sung",
-        "Nokia",
-        "Bphone"
+        new Product(1,"Iphone",100),
+        new Product(2,"Sam sung",200),
     ];
 
 
@@ -34,7 +44,9 @@
       let tableString = `<table border="1" style="border-collapse: collapse">
                         <tr>
                             <th>STT</th>
-                            <th> Tên sản phẩm </th>
+                            <th> ID </th>
+                            <th> Tên </th>
+                            <th> Giá</th>
                             <th>Sửa</th>
                             <th>Xoá</th>
                         </tr>`;
@@ -42,7 +54,9 @@
         for (let i = 0; i <list.length ; i++) {
             tableString +=` <tr>
                             <td>${i+1}</td>
-                            <td>${list[i]}</td>
+                            <td>${list[i].id}</td>
+                            <td>${list[i].name}</td>
+                            <td>${list[i].price}</td>
                             <td><button onclick="updateByIndex(${i})">Sửa</button></td>
                             <td><button onclick="deleteByIndex(${i})">Xoá</button></td>
                         </tr>`;
@@ -54,16 +68,22 @@
 
     // Create:  hàm thêm mới
     function addNewProduct(){
-        let newProduct = document.getElementById("productName").value;
-        if (productList.includes(newProduct)){
-            document.getElementById("messageError").innerText = "Tên sản phẩm đã tồn tại trong  danh sách"
-        }else if (newProduct!=""){
-            productList.push(newProduct);
-            document.getElementById("productName").value="";
-            document.getElementById("messageError").innerText ="";
-        }else {
-           document.getElementById("messageError").innerText = "Tên sản phẩm không được để trống"
-        }
+        let id = document.getElementById("productId").value;
+        let name = document.getElementById("productName").value;
+        let price = document.getElementById("productPrice").value;
+
+        let newProduct = new Product(id,name,price);
+        productList.push(newProduct);
+
+        // if (productList.includes(newProduct)){
+        //     document.getElementById("messageError").innerText = "Tên sản phẩm đã tồn tại trong  danh sách"
+        // }else if (newProduct!=""){
+        //     productList.push(newProduct);
+        //     document.getElementById("productName").value="";
+        //     document.getElementById("messageError").innerText ="";
+        // }else {
+        //    document.getElementById("messageError").innerText = "Tên sản phẩm không được để trống"
+        // }
         display(productList);
     }
 
@@ -87,7 +107,7 @@
         // let searchList = productList.filter(p =>p.includes(searchName)); // cú pháp mơi của ES6.
         let searchList =[];
         for (let i = 0; i <productList.length ; i++) {
-            if (productList[i].includes(searchName)){
+            if (productList[i].name.includes(searchName)){
                 searchList.push(productList[i]);
             }
         }
